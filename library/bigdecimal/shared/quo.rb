@@ -61,7 +61,7 @@ describe :bigdecimal_quo, :shared => true do
   end
 
   context "with a Float" do
-    ruby_version_is "".."1.9" do
+    ruby_version_is ""..."1.9.3" do
       it "returns a Float" do
         result = @eleven.send(@method, @float, *@object)
         result.should be_close(7.4324324324324325, TOLERANCE)
@@ -69,7 +69,7 @@ describe :bigdecimal_quo, :shared => true do
       end
     end
 
-    ruby_version_is "2.0.0" do
+    ruby_version_is "1.9.3" do
       it "returns a BigDecimal" do
         result = @eleven.send(@method, @float, *@object)
         result.should be_close(7.4324324324324325, TOLERANCE)
@@ -87,13 +87,13 @@ describe :bigdecimal_quo, :shared => true do
       end
     end
 
-    ruby_version_is "1.9"..."2.0" do
+    ruby_version_is "1.9.1"..."1.9.3" do
       it "raises a TypeError" do
         lambda { @eleven.send(@method, @rational, *@object) }.should raise_error(TypeError)
       end
     end
 
-    ruby_version_is "2.0.0" do
+    ruby_version_is "1.9.3" do
       it "returns a BigDecimal" do
         result = @eleven.send(@method, @rational, *@object)
         result.should be_close(1.94117647058824, TOLERANCE)
